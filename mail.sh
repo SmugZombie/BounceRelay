@@ -1,5 +1,5 @@
 #!/bin/bash
-# getIP.sh
+# mail.sh
 # author: ThirdPartyReject
 # date: 07/06/2015
 # purpose: For use with machines that dont have access to PHP
