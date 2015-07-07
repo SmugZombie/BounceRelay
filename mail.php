@@ -1,3 +1,7 @@
+$to = "//email to recieve notification";
+$subject = "PBX Reboot Complete"; // Subject of Email
+$message = "The PBX has rebooted and returned online."; // Body of Email
+
 if(mail2($to, $subject, $message)){ echo "Message Sent Successfully! \n"; }
 else{ echo "Message Failed to Send \n"; }
 return;
