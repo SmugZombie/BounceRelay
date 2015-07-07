@@ -1,9 +1,17 @@
-$to = "//email to recieve notification";
+<?PHP
+// mail.php
+// author: regli2
+// date: 07/06/2015
+// purpose: For use with machines that already have PHP installed on them
+
+$to = "ron@bouncerelay.com";
 $subject = "PBX Reboot Complete"; // Subject of Email
 $message = "The PBX has rebooted and returned online."; // Body of Email
 
-if(mail2($to, $subject, $message)){ echo "Message Sent Successfully! \n"; }
-else{ echo "Message Failed to Send \n"; }
+if(mail2($to, $subject, $message))
+        { echo "Message Sent Successfully! \n"; }
+else
+        { echo "Message Failed to Send \n"; }
 return;
 
 function mail2($to, $subject, $message){
