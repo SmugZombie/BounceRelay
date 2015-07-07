@@ -5,8 +5,8 @@
 # purpose: For use with machines that dont have access to PHP
 
 to="ron@bouncerelay.com"
-subject="'Test Message'"
-message="'This is a test message'"
+subject="Test Message"
+message="This is a test message"
 apiKey="//APIKEYHERE//"
 
 # Do not modify below this line
