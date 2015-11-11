@@ -15,26 +15,24 @@ else
 return;
 
 function mail2($to, $subject, $message){
-        $key = '//YOUR PRIVATE KEY//';
-        if($message == "" || $to == "" || $subject == ""){ return; }
+        $apikey = '//YOUR PRIVATE KEY//';
+        $url = "https://bouncerelay.com/api/1.0/sendmail.json";
+	$subject = htmlentities($subject);;
+	$data = array("apikey" => $apikey,"subject" => $subject,"message"=>$message, "to" => $to );
+    $data_string = json_encode($data);
 
-        //set POST variables
-        $url = 'https://bouncerelay.com/api/';
-        $fields = array('email' => urlencode($to), 'subject' => urlencode($subject), 'message' => urlencode($message), 'key' => urlencode($key) );
-
-        //url-ify the data for the POST
-        foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-        rtrim($fields_string, '&');
-
-        //open connection, set the url, number of POST vars, POST data
-        $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch,CURLOPT_POST, count($fields));
-        curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $result = curl_exec($ch);
-        curl_close($ch);
-        return $result;
+	$ch=curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json', 'Content-Length: ' . strlen($data_string)));
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    $result = curl_exec($ch);
+    $err = curl_error($ch);
+    if($err){$result .= "ERR".$err; }
+    curl_close($ch);
+    
+    return $result;
 }
