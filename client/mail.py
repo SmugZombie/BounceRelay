@@ -1,4 +1,4 @@
-#/usr/bin/python
+#!/usr/bin/python
 # mail.py
 # github.com/smugzombie/bouncerelay
 
